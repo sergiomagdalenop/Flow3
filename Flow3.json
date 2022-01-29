@@ -1,0 +1,260 @@
+[
+    {
+        "id": "da36a578d44bb472",
+        "type": "tab",
+        "label": "Flow 3",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "d849cc89daefc6e3",
+        "type": "json",
+        "z": "da36a578d44bb472",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 130,
+        "y": 320,
+        "wires": [
+            [
+                "4529bb5246e7e601",
+                "9dc71db0394799fc",
+                "1b1ef281dc5e346d"
+            ]
+        ]
+    },
+    {
+        "id": "4529bb5246e7e601",
+        "type": "function",
+        "z": "da36a578d44bb472",
+        "name": "Funcion1",
+        "func": "msg.payload = msg.payload.ID\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 300,
+        "y": 200,
+        "wires": [
+            [
+                "afdab2c816046218",
+                "af0c68a5a536444f"
+            ]
+        ]
+    },
+    {
+        "id": "1b1ef281dc5e346d",
+        "type": "function",
+        "z": "da36a578d44bb472",
+        "name": "Temperatura",
+        "func": "msg.payload = msg.payload.Temp\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 310,
+        "y": 280,
+        "wires": [
+            [
+                "60f45e1831f3beb2"
+            ]
+        ]
+    },
+    {
+        "id": "9dc71db0394799fc",
+        "type": "function",
+        "z": "da36a578d44bb472",
+        "name": "Funcion3",
+        "func": "msg.topic= msg.payload.ID;\nmsg.payload = msg.payload.Temp;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 300,
+        "y": 360,
+        "wires": [
+            [
+                "232ac1bcae0f38de"
+            ]
+        ]
+    },
+    {
+        "id": "afdab2c816046218",
+        "type": "ui_text_input",
+        "z": "da36a578d44bb472",
+        "name": "",
+        "label": "Nombre",
+        "tooltip": "\" Aprendiendo \"",
+        "group": "8e5ac0ec35da0ba5",
+        "order": 0,
+        "width": "6",
+        "height": "3",
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 680,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "232ac1bcae0f38de",
+        "type": "ui_chart",
+        "z": "da36a578d44bb472",
+        "name": "",
+        "group": "8e5ac0ec35da0ba5",
+        "order": 2,
+        "width": "6",
+        "height": "6",
+        "label": "Temperatura Ambiental",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "9",
+        "ymax": "40",
+        "removeOlder": "15",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "x": 750,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "60f45e1831f3beb2",
+        "type": "ui_gauge",
+        "z": "da36a578d44bb472",
+        "name": "",
+        "group": "8e5ac0ec35da0ba5",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Temperaturagauge",
+        "label": "C - units",
+        "format": "{{value}}",
+        "min": "8",
+        "max": "40",
+        "colors": [
+            "#729fcf",
+            "#e6e600",
+            "#cc0000"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 710,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "af0c68a5a536444f",
+        "type": "debug",
+        "z": "da36a578d44bb472",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 690,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "8bd73e3cf8f9aea3",
+        "type": "mqtt in",
+        "z": "da36a578d44bb472",
+        "name": "",
+        "topic": "sic/flow3/temp",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "48de0970c4243128",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 90,
+        "y": 160,
+        "wires": [
+            [
+                "d849cc89daefc6e3"
+            ]
+        ]
+    },
+    {
+        "id": "8e5ac0ec35da0ba5",
+        "type": "ui_group",
+        "name": "Temperatura - Etiqueta(ID)",
+        "tab": "8a26a560585e6e44",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "48de0970c4243128",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "18.193.126.219",
+        "port": "1883",
+        "tls": "",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "8a26a560585e6e44",
+        "type": "ui_tab",
+        "name": "Temperatura",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
